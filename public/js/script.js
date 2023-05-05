@@ -13,13 +13,13 @@ form.addEventListener("submit", (event) => {
         return alert("Por favor, preencha todos os campos!");
     }
 
-    if(nameInput.value.length < 4 && !isNameValid(nameInput.value)){
+    const nameArray = nameInput.value.split(" ");
+    if(nameInput.value.length < 4 || nameArray.length < 2){
         return alert("Por favor, preencha com o seu nome completo!");
     }
 
-    const nameArray = nameInput.value.split(" ");
-    if(nameArray.length < 2){
-        return alert("Por favor, preencha com o seu nome completo!");
+    if(!isNameValid(nameInput.value)){
+        return alert("Por favor, verifique o seu nome!");
     }
 
     if(cpfInput.value.length !== 11 || !isCpfValid(cpfInput.value)){

@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    font-family: 'Roboto';
 }
 
 body{
@@ -66,7 +67,7 @@ h1, h2, h3{
 }
 
 form{
-    width: 100%;
+    width: 80%;
     gap: .5rem;
     margin: 0 auto;
 }
@@ -99,4 +100,13 @@ button{
 
 .hidden{
     display: none;
+}
+
+@media(max-width: 1000px){
+    .form-info, .city-state-form, .situation-date{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
 }
