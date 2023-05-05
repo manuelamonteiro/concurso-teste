@@ -1,0 +1,102 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    padding: 1rem;
+    background-color:#faeaea;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1{
+    color: rgb(185, 2, 185);
+}
+
+h3{
+    padding-top: 1rem;
+    color:rgb(38, 63, 175);
+    cursor: pointer;
+}
+
+h1, h2, h3{
+    text-align: center;
+}
+
+.registration-page{
+    width: 80%;
+}
+
+.voucher-page{
+    width: 100%;
+}
+
+.horizontal-line{
+    background-color: #dddddd;
+    height: 1px;
+}
+
+.form-info, .city-state-form, .situation-date{
+    display:flex;
+}
+
+.city-state-form{
+    padding-top: 15px;
+    gap: 10px;
+}
+
+.form-info{
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    gap: 30px;
+}
+
+.situation-date{
+    gap: 10px;
+}
+
+.right-form{
+    width: 80%;
+}
+
+.left-form{
+    width: 70%;
+}
+
+form{
+    width: 100%;
+    gap: .5rem;
+    margin: 0 auto;
+}
+
+input, select{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: .8rem;
+}
+
+label{
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+}
+
+button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color:#fff;
+    font-size: .8rem;
+    cursor:pointer;
+    background-color:rgba(91, 180, 1, 0.753);
+    margin-top: 1rem;
+    margin-left:85%;
+}
+
+.hidden{
+    display: none;
+}
