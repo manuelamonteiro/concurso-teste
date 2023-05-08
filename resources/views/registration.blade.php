@@ -30,15 +30,15 @@
                     <select name="state" id="state">
                         <option value="">Selecionar</option>
                         @foreach($state as $state)
-                        <option value={{$state -> sigla}}>{{$state -> sigla}}</option>
+                        <option value={{$state -> estado_id}}>{{$state -> sigla}}</option>
                         @endforeach
                     </select>
 
                     <label for="city">Cidade:</label>
                     <select name="city" id="city">
-                    <option value="">Selecionar</option>
+                        <option value="">Selecionar</option>
                         @foreach($city as $city)
-                        <option value={{$city -> nome}}>{{$city -> nome}}</option>
+                        <option value={{$city -> cidade_id}}>{{$city -> nome}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -47,7 +47,7 @@
 
         <div class="horizontal-line" />
 
-        <button type="submit" class="registration-button">Salvar Inscrição</button>
+        <button type="submit" onClick="saveRegistration" class="registration-button">Salvar Inscrição</button>
     </form>
 </div>
 

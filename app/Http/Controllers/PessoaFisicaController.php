@@ -10,8 +10,10 @@ use App\Models\PessoaFisica;
 
 class PessoaFisicaController extends Controller
 {
-   
-    public function __construct(){}
+
+    public function __construct()
+    {
+    }
 
     public function store(Request $request)
     {
@@ -19,23 +21,23 @@ class PessoaFisicaController extends Controller
             $request,
             [
                 'nome' => 'required',
-			    'cpf' => 'required',
-			    'endereco' => 'required',
-			    'cidade_id' => 'required',
-			    'estado_id' => 'required',
+                'cpf' => 'required',
+                'endereco' => 'required',
+                'cidade_id' => 'required',
+                'estado_id' => 'required',
             ]
         );
-        
-	    $pessoa = new PessoaFisica();
-	    $pessoa->nome = $request->nome;
-	    $pessoa->cpf = $request->cpf;
-	    $pessoa->endereco = $request->endereco;
-	    $pessoa->cidade_id = $request->cidade_id;
-	    $pessoa->estado_id = $request->estado_id;
-	    
+
+        $pessoa = new PessoaFisica();
+        $pessoa->nome = $request->nome;
+        $pessoa->cpf = $request->cpf;
+        $pessoa->endereco = $request->endereco;
+        $pessoa->cidade_id = $request->cidade_id;
+        $pessoa->estado_id = $request->estado_id;
+
         return json_encode(PessoaFisica::createPessoaFisica($pessoa));
     }
-    
+
     public function update(Request $request)
     {
         $this->validate(
@@ -43,37 +45,37 @@ class PessoaFisicaController extends Controller
             [
                 'id' => 'required',
                 'nome' => 'required',
-			    'cpf' => 'required',
-			    'endereco' => 'required',
-			    'cidade_id' => 'required',
-			    'estado_id' => 'required',
+                'cpf' => 'required',
+                'endereco' => 'required',
+                'cidade_id' => 'required',
+                'estado_id' => 'required',
             ]
         );
-        
-	    $pessoa = PessoaFisica::find($request->id);
-	    $pessoa->nome = $request->nome;
-	    $pessoa->cpf = $request->cpf;
-	    $pessoa->endereco = $request->endereco;
-	    $pessoa->cidade_id = $request->cidade_id;
-	    $pessoa->estado_id = $request->estado_id;
-	    
+
+        $pessoa = PessoaFisica::find($request->id);
+        $pessoa->nome = $request->nome;
+        $pessoa->cpf = $request->cpf;
+        $pessoa->endereco = $request->endereco;
+        $pessoa->cidade_id = $request->cidade_id;
+        $pessoa->estado_id = $request->estado_id;
+
         return json_encode(PessoaFisica::updatePessoaFisica($pessoa));
     }
 
     public function index(Request $request)
     {
-    	$this->validate(
+        $this->validate(
             $request,
             [
                 'nome' => 'nullable'
             ]
         );
-        
-        if(null != $request->nome){
-        	$result = PessoaFisica::where('nome', $request->nome)->orderBy('nome')->get();
-        	return json_encode($result);
+
+        if (null != $request->nome) {
+            $result = PessoaFisica::where('nome', $request->nome)->orderBy('nome')->get();
+            return json_encode($result);
         }
-        
+
         return json_encode(PessoaFisica::orderBy('nome')->get());
     }
 
@@ -82,12 +84,16 @@ class PessoaFisicaController extends Controller
         return json_encode(PessoaFisica::loadPessoaFisicaById($id));
     }
 
+    public static function showByCpf($cpf)
+    {
+        return json_encode(PessoaFisica::loadPessoaFisicaByCpf($cpf));
+    }
+
 
     public function destroy(Request $request, $id)
     {
         $pessoa = PessoaFisica::find($id);
-	    
+
         return json_encode(PessoaFisica::deletePessoaFisica($pessoa));
     }
-
 }

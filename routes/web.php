@@ -17,10 +17,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/registration', function () {
     $city = Cidade::all();
     $state = Estado::all();
     return view('registration', ['city' => $city, 'state' => $state]);
