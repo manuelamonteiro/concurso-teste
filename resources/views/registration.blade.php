@@ -29,13 +29,17 @@
                     <label for="state">Estado:</label>
                     <select name="state" id="state">
                         <option value="">Selecionar</option>
-                        <option value="rj">RJ</option>
+                        @foreach($state as $state)
+                        <option value={{$state -> sigla}}>{{$state -> sigla}}</option>
+                        @endforeach
                     </select>
 
                     <label for="city">Cidade:</label>
                     <select name="city" id="city">
-                        <option value="">Selecionar</option>
-                        <option value="rj">RJ</option>
+                    <option value="">Selecionar</option>
+                        @foreach($city as $city)
+                        <option value={{$city -> nome}}>{{$city -> nome}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>

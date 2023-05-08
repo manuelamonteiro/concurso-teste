@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\InscricaoController;
+use App\Models\Cidade;
+use App\Models\Estado;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +21,9 @@ Route::get('/', function () {
 });
 
 Route::get('/registration', function () {
-    return view('registration');
+    $city = Cidade::all();
+    $state = Estado::all();
+    return view('registration', ['city' => $city, 'state' => $state]);
 });
 
 Route::get('/voucher', function () {
