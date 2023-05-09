@@ -68,9 +68,9 @@ class InscricaoController extends Controller
         return json_encode(Inscricao::orderBy('cargo')->get());
     }
 
-    public function show(Request $request, $id)
+    public function show(Request $request, $pessoa_fisica_id)
     {
-        return json_encode(Inscricao::loadInscricaoById($id));
+        return json_encode(Inscricao::loadInscricaoById($pessoa_fisica_id));
     }
 
     public function destroy(Request $request, $id)

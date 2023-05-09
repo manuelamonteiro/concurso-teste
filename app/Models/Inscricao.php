@@ -22,8 +22,8 @@ class Inscricao extends Model
     	return $inscricao->update();
     }
     
-    public static function loadInscricaoById($id){
-        return Inscricao::find($id)->first();
+    public static function loadInscricaoById($pessoa_fisica_id){
+        return Inscricao::where('pessoa_fisica_id', $pessoa_fisica_id)->get()->first();
     }
     
     public static function deleteInscricao(Inscricao $inscricao){

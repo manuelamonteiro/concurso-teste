@@ -28,7 +28,7 @@ class PessoaFisica extends Model
 
     public static function loadPessoaFisicaById($id)
     {
-        return PessoaFisica::find($id)->first();
+        return PessoaFisica::where('id', $id)->get()->first();
     }
 
     public static function loadPessoaFisicaByCpf($cpf)

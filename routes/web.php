@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\InscricaoController;
+use App\Http\Controllers\PaginaDeComprovanteController;
+use App\Http\Controllers\PaginaDeInscricaoController;
 use App\Models\Cidade;
 use App\Models\Estado;
 use Illuminate\Support\Facades\Route;
@@ -16,12 +18,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $city = Cidade::all();
-    $state = Estado::all();
-    return view('registration', ['city' => $city, 'state' => $state]);
-});
+Route::get('/', [PaginaDeInscricaoController::class, 'show']);
 
-Route::get('/voucher', function () {
-    return view('voucher');
-});
+Route::get('/voucher', [PaginaDeComprovanteController::class, 'show']);

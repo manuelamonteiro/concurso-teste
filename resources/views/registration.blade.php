@@ -23,7 +23,7 @@
 
             <div class="right-form">
                 <label for="CPF">CPF:</label>
-                <input type="password" id="CPF" />
+                <input type="text" id="CPF" />
 
                 <div class="city-state-form">
                     <label for="state">Estado:</label>
@@ -50,5 +50,4 @@
         <button type="submit" onClick="saveRegistration" class="registration-button">Salvar Inscrição</button>
     </form>
 </div>
-
 @endsection

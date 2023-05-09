@@ -15,14 +15,18 @@ h1{
     color: rgb(185, 2, 185);
 }
 
-h3{
-    padding-top: 1rem;
-    color:rgb(38, 63, 175);
-    cursor: pointer;
+h1, h2{
+    text-align: center;
 }
 
-h1, h2, h3{
-    text-align: center;
+a{
+    text-decoration: none;
+    padding-top: 1rem;
+    color:rgb(13, 53, 231);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .registration-page{
