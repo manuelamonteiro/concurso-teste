@@ -52,7 +52,7 @@ class PessoaFisicaController extends Controller
             ]
         );
 
-        $pessoa = PessoaFisica::find($request->id);
+        $pessoa = PessoaFisica::loadPessoaFisicaById($request->id);
         $pessoa->nome = $request->nome;
         $pessoa->cpf = $request->cpf;
         $pessoa->endereco = $request->endereco;

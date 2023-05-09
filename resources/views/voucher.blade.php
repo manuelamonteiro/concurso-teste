@@ -9,6 +9,7 @@
 
     <form id="form">
         <div class="horizontal-line" />
+        <ion-icon class="update-button" onClick="updateVoucher(event)" name="create-outline"></ion-icon>
         <div class="form-info">
             <div class="left-form">
                 <label for="id-voucher">Inscrição:</label>

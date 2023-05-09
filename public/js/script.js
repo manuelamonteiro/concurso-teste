@@ -1,4 +1,4 @@
-//Registration Screen
+//Post voucher
 
 const form = document.querySelector("#form");
 const nameInput = document.querySelector("#name");
@@ -90,6 +90,7 @@ async function isAFirstRegistration(cpf) {
 }
 
 let personId;
+let cpfUpdate;
 
 async function getPersonId(cpf) {
     const promise = axios.get(`api/pessoa_fisica_by_cpf/${cpf}`);
@@ -132,12 +133,17 @@ async function saveRegistration(name, address, cpf, role, state, city) {
 
         window.location.href = `http://127.0.0.1:8000/voucher`;
     } else {
-        alert("Inscrição já realizada!");
+        cpfUpdate = sessionStorage.getItem("cpfUpdate");
+        if (cpf === cpfUpdate) {
+            saveNewVoucher(cpf);
+        } else {
+            alert("Inscrição já realizada!");
+        }
     }
 }
 
 
-//Voucher Screen
+//Get Voucher
 
 const idInput = document.querySelector("#id-voucher");
 const nameVoucherInput = document.querySelector("#name-voucher");
@@ -268,5 +274,52 @@ async function deleteVoucher(event) {
 
         window.location.href = `http://127.0.0.1:8000/`
     }
+}
+
+
+//Update Voucher
+
+function updateVoucher(event) {
+
+    if (confirm("Você realmente deseja atualizar o comprovante?")) {
+        event.preventDefault();
+
+        sessionStorage.setItem("cpfUpdate", fixCpfZeros(personDataForVoucher.cpf));
+        cpfUpdate = sessionStorage.getItem("cpfUpdate");
+        window.location.href = `http://127.0.0.1:8000/`;
+    }
+}
+
+async function saveNewVoucher(cpf) {
+    await getPersonId(cpf);
+    await getPersonData(personId);
+    await getRegistrationData(personId);
+
+    const personData = {
+        id: personDataForVoucher.id,
+        nome: nameInput.value,
+        cpf: fixCpfZeros(cpfInput.value.replace(/[^\d]+/g, '')),
+        endereco: addressInput.value,
+        cidade_id: citySelect.value,
+        estado_id: stateSelect.value
+    }
+
+    const registrationData = {
+        id: registrationDataForVoucher.id,
+        pessoa_fisica_id: registrationDataForVoucher.pessoa_fisica_id,
+        cargo: roleInput.value,
+        situacao: registrationDataForVoucher.situacao
+    }
+
+    const registrationPromise = axios.patch(`api/inscricao`, registrationData);
+    await registrationPromise.then((res) => console.log("Atualizou!"));
+
+    const personPromise = axios.patch(`api/pessoa_fisica`, personData);
+    await personPromise.then((res) => console.log("Atualizou!"));
+
+    sessionStorage.setItem("personId", personId);
+    sessionStorage.removeItem("cpfUpdate");
+
+    window.location.href = `http://127.0.0.1:8000/voucher`;
 }
 

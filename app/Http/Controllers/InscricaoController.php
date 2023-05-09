@@ -45,7 +45,7 @@ class InscricaoController extends Controller
             ]
         );
 
-        $inscricao = Inscricao::find($request->id);
+        $inscricao = Inscricao::loadInscricaoById($request->id);
         $inscricao->pessoa_fisica_id = $request->pessoa_fisica_id;
         $inscricao->cargo = $request->cargo;
         $inscricao->situacao = $request->situacao;

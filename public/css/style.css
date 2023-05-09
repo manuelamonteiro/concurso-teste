@@ -1,79 +1,84 @@
 * {
     box-sizing: border-box;
     font-family: 'Roboto';
-} 
+}
 
-body{
+body {
     padding: 1rem;
-    background-color:#faeaea;
+    background-color: #faeaea;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-h1{
+h1 {
     color: rgb(185, 2, 185);
 }
 
-h1, h2{
+h1,
+h2 {
     text-align: center;
 }
 
-a{
+a {
     text-decoration: none;
     padding-top: 1rem;
-    color:rgb(13, 53, 231);
+    color: rgb(13, 53, 231);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.registration-page, .voucher-page{
+.registration-page,
+.voucher-page {
     width: 80%;
 }
 
-.horizontal-line{
+.horizontal-line {
     background-color: #dddddd;
     height: 1px;
 }
 
-.form-info, .city-state-form, .situation-date{
-    display:flex;
+.form-info,
+.city-state-form,
+.situation-date {
+    display: flex;
 }
 
-.city-state-form{
+.city-state-form {
     padding-top: 15px;
     gap: 10px;
 }
 
-.form-info{
+.form-info {
     width: 100%;
     padding-top: 20px;
     padding-bottom: 20px;
     gap: 30px;
 }
 
-.situation-date{
+.situation-date {
     gap: 10px;
     padding-top: 20px;
 }
 
-.right-form{
+.right-form {
     width: 100%;
 }
 
-.left-form{
+.left-form {
     width: 100%;
 }
 
-form{
+form {
     width: 85%;
     gap: .5rem;
     margin: 0 auto;
 }
 
-input, select{
+input,
+select {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
@@ -81,37 +86,46 @@ input, select{
     font-size: .8rem;
 }
 
-label{
+label {
     display: flex;
     padding-top: 10px;
     align-items: center;
 }
 
-.registration-button, .print-button, .delete-button{
+.registration-button,
+.print-button,
+.delete-button {
     padding: 10px;
     border: none;
     border-radius: 5px;
-    color:#fff;
+    color: #fff;
     font-size: .8rem;
-    cursor:pointer;
+    cursor: pointer;
     margin-top: 1rem;
 }
 
-.registration-button{
-    background-color:rgba(91, 180, 1, 0.753);
-    margin-left:85%;
+.registration-button {
+    background-color: rgba(91, 180, 1, 0.753);
+    margin-left: 85%;
 }
 
-.print-button{
-    background-color:rgba(91, 180, 1, 0.753);
+.print-button {
+    background-color: rgba(91, 180, 1, 0.753);
 }
 
-.delete-button{
-    background-color:rgba(219, 11, 11, 0.753);
+.delete-button {
+    background-color: rgba(219, 11, 11, 0.753);
 }
 
-.backhome-print-delete{
+.backhome-print-delete {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.update-button {
+    font-size: 25px;
+    margin-left: 97%;
+    padding-top: 5px;
+    cursor: pointer;
 }
