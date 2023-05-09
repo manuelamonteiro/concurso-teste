@@ -33,6 +33,6 @@ $router->group(
 		$router->get('/inscricao/{pessoa_fisica_id}', '\App\Http\Controllers\InscricaoController@show');
 		$router->post('/inscricao', '\App\Http\Controllers\InscricaoController@store');
 		$router->patch('/inscricao', '\App\Http\Controllers\InscricaoController@update');
-		$router->patch('/inscricao/{id}', '\App\Http\Controllers\InscricaoController@destroy');
+		$router->patch('/inscricao/{pessoa_fisica_id}', '\App\Http\Controllers\InscricaoController@destroy');
 	}
 );

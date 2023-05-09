@@ -38,7 +38,6 @@ class PessoaFisica extends Model
 
     public static function deletePessoaFisica(PessoaFisica $pessoa)
     {
-        $pessoa = self::loadPessoaFisicaById($pessoa);
         return $pessoa->delete();
     }
 }

@@ -8,7 +8,8 @@ use App\Models\Estado;
 
 class PaginaDeInscricaoController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         $city = Cidade::all();
         $state = Estado::all();
         return view('registration', ['city' => $city, 'state' => $state]);

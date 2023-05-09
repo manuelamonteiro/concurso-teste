@@ -8,7 +8,8 @@ use App\Models\PessoaFisica;
 
 class PaginaDeComprovanteController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         // $register = json_encode(Inscricao::loadInscricaoById($id));
         // $person = json_encode(PessoaFisica::loadPessoaFisicaById($id));
         // return view('voucher', ['register' => $register, 'person' => $person]);

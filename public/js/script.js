@@ -8,35 +8,6 @@ const cpfInput = document.querySelector("#CPF");
 const stateSelect = document.querySelector("#state");
 const citySelect = document.querySelector("#city");
 
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const name = nameInput.value;
-    const address = addressInput.value;
-    const role = roleInput.value;
-    const cpf = cpfInput.value.replace(/[^\d]+/g, '');
-    const state = stateSelect.value;
-    const city = citySelect.value;
-
-    if (name === "" || address === "" || role === "" || cpf === "" || state === "" || city === "") {
-        return alert("Por favor, preencha todos os campos!");
-    }
-
-    const nameArray = name.split(" ");
-    if (name.length < 4 || nameArray.length < 2) {
-        return alert("Por favor, preencha com o seu nome completo!");
-    }
-
-    if (!isNameValid(name)) {
-        return alert("Por favor, verifique o seu nome!");
-    }
-
-    if (cpf.length !== 11 || !isCpfValid(cpf)) {
-        return alert("Por favor, preencha o seu CPF completo e sem símbolos!");
-    }
-
-    saveRegistration(name, address, cpf, role, state, city);
-});
-
 if (window.location.pathname === "/") {
     cpfInput.addEventListener('keypress', () => {
         let cpfInputLength = cpfInput.value.length;
@@ -49,6 +20,35 @@ if (window.location.pathname === "/") {
     });
 
     sessionStorage.removeItem("personId");
+
+    form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = nameInput.value;
+        const address = addressInput.value;
+        const role = roleInput.value;
+        const cpf = cpfInput.value.replace(/[^\d]+/g, '');
+        const state = stateSelect.value;
+        const city = citySelect.value;
+
+        if (name === "" || address === "" || role === "" || cpf === "" || state === "" || city === "") {
+            return alert("Por favor, preencha todos os campos!");
+        }
+
+        const nameArray = name.split(" ");
+        if (name.length < 4 || nameArray.length < 2) {
+            return alert("Por favor, preencha com o seu nome completo!");
+        }
+
+        if (!isNameValid(name)) {
+            return alert("Por favor, verifique o seu nome!");
+        }
+
+        if (cpf.length !== 11 || !isCpfValid(cpf)) {
+            return alert("Por favor, preencha o seu CPF completo e sem símbolos!");
+        }
+
+        saveRegistration(name, address, cpf, role, state, city);
+    });
 }
 
 function isNameValid(name) {
@@ -250,4 +250,23 @@ async function renderVoucher() {
 }
 
 renderVoucher();
+
+
+//Delete Voucher
+
+async function deleteVoucher(event) {
+    event.preventDefault();
+    if (confirm("Você realmente deseja exluir o comprovante?")) {
+        const id = personId;
+        const pessoa_fisica_id = personId;
+
+        const registrationPromise = axios.patch(`api/inscricao/${pessoa_fisica_id}`);
+        await registrationPromise.then((res) => console.log("Deletou!"));
+
+        const personPromise = axios.patch(`api/pessoa_fisica/${id}`);
+        await personPromise.then((res) => console.log("Deletou!"));
+
+        window.location.href = `http://127.0.0.1:8000/`
+    }
+}
 

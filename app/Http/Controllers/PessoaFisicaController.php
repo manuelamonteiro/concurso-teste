@@ -92,8 +92,7 @@ class PessoaFisicaController extends Controller
 
     public function destroy(Request $request, $id)
     {
-        $pessoa = PessoaFisica::find($id);
-
+        $pessoa = PessoaFisica::loadPessoaFisicaById($id);
         return json_encode(PessoaFisica::deletePessoaFisica($pessoa));
     }
 }

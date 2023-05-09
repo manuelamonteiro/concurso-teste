@@ -87,14 +87,31 @@ label{
     align-items: center;
 }
 
-button{
+.registration-button, .print-button, .delete-button{
     padding: 10px;
     border: none;
     border-radius: 5px;
     color:#fff;
     font-size: .8rem;
     cursor:pointer;
-    background-color:rgba(91, 180, 1, 0.753);
     margin-top: 1rem;
+}
+
+.registration-button{
+    background-color:rgba(91, 180, 1, 0.753);
     margin-left:85%;
+}
+
+.print-button{
+    background-color:rgba(91, 180, 1, 0.753);
+}
+
+.delete-button{
+    background-color:rgba(219, 11, 11, 0.753);
+}
+
+.backhome-print-delete{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
