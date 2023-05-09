@@ -23,7 +23,7 @@
 
             <div class="right-form">
                 <label for="CPF">CPF:</label>
-                <input type="text" id="CPF" />
+                <input type="text" id="CPF" maxlength="14"/>
 
                 <div class="city-state-form">
                     <label for="state">Estado:</label>
