@@ -50,4 +50,5 @@
         <button type="submit" onClick="saveRegistration" class="registration-button">Salvar Inscrição</button>
     </form>
 </div>
+
 @endsection
