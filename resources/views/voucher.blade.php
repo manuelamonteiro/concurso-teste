@@ -50,7 +50,8 @@
         <div class="horizontal-line" />
     </form>
 
-    <a href="http://127.0.0.1:8000/" onClick="returnToRegistration">Retornar para Inscrição</a>
+    <a href="http://127.0.0.1:8000/" >Retornar para Inscrição</a>
+    <a onClick="window.print()">Imprimir</a>
 </div>
 
 @endsection
