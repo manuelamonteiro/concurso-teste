@@ -108,7 +108,8 @@ async function postRegistration(cpf, role) {
         pessoa_fisica_id: personId,
         cargo: role,
         situacao: "enviado"
-    }
+    };
+
     const registrationPromise = axios.post("api/inscricao", registrationData);
     registrationPromise.then((res) => console.log("Inscrição realizada!"));
 }
@@ -123,7 +124,7 @@ async function saveRegistration(name, address, cpf, role, state, city) {
             endereco: address,
             cidade_id: city,
             estado_id: state
-        }
+        };
 
         const personPromise = axios.post("api/pessoa_fisica", personData);
         await personPromise.then((res) => {
@@ -177,7 +178,7 @@ async function getRegistrationData(pessoa_fisica_id) {
 }
 
 async function getCity(id) {
-    const promise = axios.get(`api/cidades/${id}`)
+    const promise = axios.get(`api/cidades/${id}`);
 
     await promise.then((res) => {
         cityName = res.data.nome;
@@ -200,7 +201,7 @@ function fixDate(timestamp) {
     if(hour === "00" || hour === "01" || hour === "02"){
         hour = 24 - 3 + Number(hour);
     } else {
-        hour = String(Number(hour) - 3)
+        hour = String(Number(hour) - 3);
     }
     const DateTime = newDate + " " + hour + time.slice(2);
 
@@ -224,12 +225,12 @@ function fixCpfZeros(cpf) {
 }
 
 function addMaskOnCpf(cpf) {
-    const cpfValue = String(cpf)
+    const cpfValue = String(cpf);
 
-    const cpfValueP1 = cpfValue.slice(0, 3)
-    const cpfValueP2 = cpfValue.slice(3, 6)
-    const cpfValueP3 = cpfValue.slice(6, 9)
-    const cpfValueP4 = cpfValue.slice(9)
+    const cpfValueP1 = cpfValue.slice(0, 3);
+    const cpfValueP2 = cpfValue.slice(3, 6);
+    const cpfValueP3 = cpfValue.slice(6, 9);
+    const cpfValueP4 = cpfValue.slice(9);
 
     return cpfValueP1 + "." + cpfValueP2 + "." + cpfValueP3 + "-" + cpfValueP4;
 }
@@ -267,6 +268,7 @@ renderVoucher();
 
 async function deleteVoucher(event) {
     event.preventDefault();
+
     if (confirm("Você realmente deseja exluir o comprovante?")) {
         const id = personId;
         const pessoa_fisica_id = personId;
@@ -277,7 +279,7 @@ async function deleteVoucher(event) {
         const personPromise = axios.patch(`api/pessoa_fisica/${id}`);
         await personPromise.then((res) => console.log("Deletou!"));
 
-        window.location.href = `http://127.0.0.1:8000/`
+        window.location.href = `http://127.0.0.1:8000/`;
     }
 }
 
@@ -285,7 +287,6 @@ async function deleteVoucher(event) {
 //Update Voucher
 
 function updateVoucher(event) {
-
     if (confirm("Você realmente deseja atualizar o comprovante?")) {
         event.preventDefault();
 
@@ -307,14 +308,14 @@ async function saveNewVoucher(cpf) {
         endereco: addressInput.value,
         cidade_id: citySelect.value,
         estado_id: stateSelect.value
-    }
+    };
 
     const registrationData = {
         id: registrationDataForVoucher.id,
         pessoa_fisica_id: registrationDataForVoucher.pessoa_fisica_id,
         cargo: roleInput.value,
         situacao: registrationDataForVoucher.situacao
-    }
+    };
 
     const registrationPromise = axios.patch(`api/inscricao`, registrationData);
     await registrationPromise.then((res) => console.log("Atualizou!"));
