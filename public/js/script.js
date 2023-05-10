@@ -116,8 +116,9 @@ async function postRegistration(cpf, role) {
 
 async function saveRegistration(name, address, cpf, role, state, city) {
     await isAFirstRegistration(cpf);
+    cpfUpdate = sessionStorage.getItem("cpfUpdate");
 
-    if (isFirst) {
+    if (isFirst && !cpfUpdate) {
         const personData = {
             nome: name,
             cpf: cpf,
@@ -134,8 +135,7 @@ async function saveRegistration(name, address, cpf, role, state, city) {
 
         window.location.href = `http://127.0.0.1:8000/voucher`;
     } else {
-        cpfUpdate = sessionStorage.getItem("cpfUpdate");
-        if (cpf === cpfUpdate) {
+        if (cpfUpdate) {
             saveNewVoucher(cpf);
         } else {
             alert("Inscrição já realizada!");
@@ -197,8 +197,8 @@ function fixDate(timestamp) {
     const date = timestamp.slice(0, 10);
     const newDate = date.split('-').reverse().join('/');
     const time = timestamp.slice(11, 19);
-    let hour = time.slice(0,2);
-    if(hour === "00" || hour === "01" || hour === "02"){
+    let hour = time.slice(0, 2);
+    if (hour === "00" || hour === "01" || hour === "02") {
         hour = 24 - 3 + Number(hour);
     } else {
         hour = String(Number(hour) - 3);
@@ -297,35 +297,39 @@ function updateVoucher(event) {
 }
 
 async function saveNewVoucher(cpf) {
-    await getPersonId(cpf);
-    await getPersonData(personId);
-    await getRegistrationData(personId);
+    if (isFirst || (cpf === cpfUpdate)) {
+        await getPersonId(cpfUpdate);
+        await getPersonData(personId);
+        await getRegistrationData(personId);
 
-    const personData = {
-        id: personDataForVoucher.id,
-        nome: nameInput.value,
-        cpf: fixCpfZeros(cpfInput.value.replace(/[^\d]+/g, '')),
-        endereco: addressInput.value,
-        cidade_id: citySelect.value,
-        estado_id: stateSelect.value
-    };
+        const personData = {
+            id: personDataForVoucher.id,
+            nome: nameInput.value,
+            cpf: fixCpfZeros(cpfInput.value.replace(/[^\d]+/g, '')),
+            endereco: addressInput.value,
+            cidade_id: citySelect.value,
+            estado_id: stateSelect.value
+        };
 
-    const registrationData = {
-        id: registrationDataForVoucher.id,
-        pessoa_fisica_id: registrationDataForVoucher.pessoa_fisica_id,
-        cargo: roleInput.value,
-        situacao: registrationDataForVoucher.situacao
-    };
+        const registrationData = {
+            id: registrationDataForVoucher.id,
+            pessoa_fisica_id: registrationDataForVoucher.pessoa_fisica_id,
+            cargo: roleInput.value,
+            situacao: registrationDataForVoucher.situacao
+        };
 
-    const registrationPromise = axios.patch(`api/inscricao`, registrationData);
-    await registrationPromise.then((res) => console.log("Atualizou!"));
+        const registrationPromise = axios.patch(`api/inscricao`, registrationData);
+        await registrationPromise.then((res) => console.log("Atualizou!"));
 
-    const personPromise = axios.patch(`api/pessoa_fisica`, personData);
-    await personPromise.then((res) => console.log("Atualizou!"));
+        const personPromise = axios.patch(`api/pessoa_fisica`, personData);
+        await personPromise.then((res) => console.log("Atualizou!"));
 
-    sessionStorage.setItem("personId", personId);
-    sessionStorage.removeItem("cpfUpdate");
+        sessionStorage.setItem("personId", personId);
+        sessionStorage.removeItem("cpfUpdate");
 
-    window.location.href = `http://127.0.0.1:8000/voucher`;
+        window.location.href = `http://127.0.0.1:8000/voucher`;
+    } else {
+        alert("O cpf já está sendo utilizado por outro usuário!");
+    }
 }
 
