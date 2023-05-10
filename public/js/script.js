@@ -196,7 +196,12 @@ function fixDate(timestamp) {
     const date = timestamp.slice(0, 10);
     const newDate = date.split('-').reverse().join('/');
     const time = timestamp.slice(11, 19);
-    const hour = String(Number(time.slice(0, 2)) - 3);
+    let hour = time.slice(0,2);
+    if(hour === "00" || hour === "01" || hour === "02"){
+        hour = 24 - 3 + Number(hour);
+    } else {
+        hour = String(Number(hour) - 3)
+    }
     const DateTime = newDate + " " + hour + time.slice(2);
 
     return DateTime;
